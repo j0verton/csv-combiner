@@ -1,1 +1,1 @@
-jeff
+[ './fixtures/accessories.csv', './fixtures/clothing.csv' ]
