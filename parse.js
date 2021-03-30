@@ -7,39 +7,30 @@ import neatCsv from 'neat-csv';
 export const parseCSVFileArray = async (arrayOfCSVFiles) => {
 
 
-    const arrayOfDataObjects = await new Promise(async () => {
-        arrayOfCSVFiles.map((file) => {
+    const arrayOfDataObjects = await arrayOfCSVFiles.map(async (file) => {
 
-            const stringArrayWithFileName = file.split('/');
+        const stringArrayWithFileName = file.split('/');
 
-            const fileNameIndex = stringArrayWithFileName.length - 1;
+        const fileNameIndex = stringArrayWithFileName.length - 1;
 
-            const fileName = stringArrayWithFileName[fileNameIndex];
+        const fileName = stringArrayWithFileName[fileNameIndex];
 
-            const results = [];
+        const results = [];
 
-            new Promise(async () => {
-                await fs.createReadStream(file)
-                    .pipe(csv())
-                    .on('header', function (header) {
-                        header.push("filename");
-                        results.push(header);
-                    })
-                    .on('data', function (data) {
-                        data.push(fileName);
-                        results.push(data);
-                    })
-                    .on('end', () => {
-                        // console.log(results);
-                    });
-            }).then(() => {
-                console.log("results in .map", results)
-                return results
+        await fs.createReadStream(file)
+            .pipe(csv())
+            .on('header', function (header) {
+                header.push("filename");
+                results.push(header);
             })
-
-        })
+            .on('data', function (data) {
+                data.push(fileName);
+                results.push(data);
+            })
+            .on('end', () => {
+                return new Promise(() => { console.log("parse complete") })
+            });
     })
-
     console.log(arrayOfDataObjects, "arrayOfDataObjects")
     return arrayOfDataObjects
 
