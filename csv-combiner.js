@@ -4,14 +4,15 @@
 // console.log(process.argv);
 
 import { filterOutCSVs } from "./filter-csv.js";
+import { parseCSVFileArray } from "./parse.js";
 
 const csvCombiner = (arr) => {
 
     // remove non-csv files from the array of arguments
     const csvFileArray = filterOutCSVs(arr);
-    console.log(csvFileArray);
+    // console.log(csvFileArray);
     // parse the csv files into an array of objects
-
+    const arrayOfDataObjects = parseCSVFileArray(csvFileArray)
 
     // add a new colum with the filename
     // deal with bad data somehow
