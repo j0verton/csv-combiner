@@ -1,6 +1,8 @@
 import csv from 'csv-parse';
 import parse from 'csv-parse';
+import fs from 'fs'
 // const fs = require('fs');
+import neatCsv from 'neat-csv';
 
 export const parseCSVFileArray = (arrayOfCSVFiles) => {
 
@@ -14,12 +16,28 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
         const fileNameIndex = stringArrayWithFileName.length - 1;
 
         const fileName = stringArrayWithFileName[fileNameIndex];
+        const results = [];
+        fs.createReadStream(file)
+            .pipe(csv())
+            .on('data', (data) => results.push(data))
+            .on('end', () => {
+                console.log(results);
+            });
 
-        // const records = 
-        return parseFile(fileName).then(response => {
-            console.log(response)
-            return response
-        })
+
+        // (async () => {
+        //     console.log(await neatCsv(fileName));
+        //     //=> [{type: 'unicorn', part: 'horn'}, {type: 'rainbow', part: 'pink'}]
+        // })();
+
+
+
+
+
+        // return parseFile(fileName).then(response => {
+        //     console.log(response)
+        //     return response
+        // })
 
 
 

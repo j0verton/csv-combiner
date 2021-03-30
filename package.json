@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/j0verton/csv-combiner#readme",
   "dependencies": {
-    "csv": "^5.4.0"
+    "csv": "^5.4.0",
+    "csv-parser": "^3.0.0",
+    "neat-csv": "^6.0.1"
   }
 }
