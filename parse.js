@@ -19,6 +19,10 @@ export const parseCSVFileArray = async (arrayOfCSVFiles) => {
         const results = [];
         return fs.createReadStream(file)
             .pipe(csv())
+            .on('header', function (header) {
+                header.push("filename");
+                results.push(header);
+            })
             .on('data', function (data) {
                 data.push(fileName);
                 results.push(data);
