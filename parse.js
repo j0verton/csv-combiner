@@ -1,11 +1,6 @@
-import * as csv from '@fast-csv/format'
-// import csv from 'fast-csv';
-// import { format } from 'fast-csv.format';
-
-const fs = require('fs');
-const path = require('path');
-const csv = require('fast-csv');
-const User = require('./models/user');
+import csv from 'csv-parse';
+import parse from 'csv-parse';
+// const fs = require('fs');
 
 export const parseCSVFileArray = (arrayOfCSVFiles) => {
 
@@ -20,37 +15,38 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
 
         const fileName = stringArrayWithFileName[fileNameIndex];
 
+        // const records = 
+        return parseFile(fileName).then(response => {
+            console.log(response)
+            return response
+        })
 
 
-        fs.createReadStream(path.resolve(file))
-            .pipe(csv.parse({ headers: true }))
-            // pipe the parsed input into a csv formatter
-            .pipe(csv.format({ headers: true }))
-            // Using the transform function from the formatting stream
-            .transform((row, next) => {
-                if (err) {
-                    return next(err);
-                }
-                return next(null, {
-                    id: row.id,
-                    firstName: row.first_name,
-                    lastName: row.last_name,
-                    address: row.address,
-                    // properties from user
-                    isVerified: user.isVerified,
-                    hasLoggedIn: user.hasLoggedIn,
-                    age: user.age,
-                });
 
-            })
-            .pipe(process.stdout)
-            .on('end', () => process.exit());
+        // return fs.createReadStream(file)
+        //     .pipe(csv())
+        //     .on('data', function (data) {
+        //         data.newColumn = fileName;
+        //         dataArray.push(data);
+        //     })
 
     })
+}
 
 
-
-
+const parseFile = async (fileName) => {
+    records = []
+    const parser = fs
+        .createReadStream(fileName)
+        .pipe(parse({
+            // CSV options if any
+        }));
+    for await (const record of parser) {
+        // Work with each record
+        records.push(record)
+    }
+    return records
+}
 
 
 
@@ -103,4 +99,3 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
     // deal with bad data somehow
 
     //
-}
