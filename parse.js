@@ -4,12 +4,12 @@ import fs from 'fs'
 // const fs = require('fs');
 import neatCsv from 'neat-csv';
 
-export const parseCSVFileArray = (arrayOfCSVFiles) => {
+export const parseCSVFileArray = async (arrayOfCSVFiles) => {
 
 
 
 
-    const arrayOfDataObjects = arrayOfCSVFiles.map(file => {
+    const arrayOfDataObjects = await arrayOfCSVFiles.map(file => {
 
         const stringArrayWithFileName = file.split('/');
 
@@ -19,19 +19,12 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
         const results = [];
         return fs.createReadStream(file)
             .pipe(csv())
-            .on('data', (data) => results.push(data))
+            .on('data', function (data) {
+                data.push(fileName);
+                results.push(data);
+            })
             .on('end', () => {
-                // console.log(results);
-                results[0].push("filename")
-                results.map(dataArray => {
-                    if (dataArray.length < 3) {
-                        dataArray.push(fileName)
-                        return dataArray
-                    } else {
-                        return dataArray;
-                    }
-                })
-                // console.log(results)
+                console.log(results)
             })
 
 
