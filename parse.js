@@ -7,33 +7,40 @@ import neatCsv from 'neat-csv';
 export const parseCSVFileArray = async (arrayOfCSVFiles) => {
 
 
+    const arrayOfDataObjects = await new Promise(async () => {
+        arrayOfCSVFiles.map((file) => {
 
+            const stringArrayWithFileName = file.split('/');
 
-    const arrayOfDataObjects = await arrayOfCSVFiles.map(async (file) => {
+            const fileNameIndex = stringArrayWithFileName.length - 1;
 
-        const stringArrayWithFileName = file.split('/');
+            const fileName = stringArrayWithFileName[fileNameIndex];
 
-        const fileNameIndex = stringArrayWithFileName.length - 1;
+            const results = [];
 
-        const fileName = stringArrayWithFileName[fileNameIndex];
-        const results = [];
-        return fs.createReadStream(file)
-            .pipe(csv())
-            .on('header', function (header) {
-                header.push("filename");
-                results.push(header);
+            new Promise(async () => {
+                await fs.createReadStream(file)
+                    .pipe(csv())
+                    .on('header', function (header) {
+                        header.push("filename");
+                        results.push(header);
+                    })
+                    .on('data', function (data) {
+                        data.push(fileName);
+                        results.push(data);
+                    })
+                    .on('end', () => {
+                        // console.log(results);
+                    });
+            }).then(() => {
+                console.log("results in .map", results)
+                return results
             })
-            .on('data', function (data) {
-                data.push(fileName);
-                results.push(data);
-            })
-            .on('end', () => {
-                // console.log(results);
-                // return results
-            });
-        console.log("results in .map", results)
+
+        })
     })
-    console.log(arrayOfDataObjects)
+
+    console.log(arrayOfDataObjects, "arrayOfDataObjects")
     return arrayOfDataObjects
 
 }
