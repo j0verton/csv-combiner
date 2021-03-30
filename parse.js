@@ -17,7 +17,7 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
 
         const fileName = stringArrayWithFileName[fileNameIndex];
         const results = [];
-        fs.createReadStream(file)
+        return fs.createReadStream(file)
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
@@ -31,7 +31,7 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
                         return dataArray;
                     }
                 })
-                console.log(results)
+                // console.log(results)
             })
 
 
