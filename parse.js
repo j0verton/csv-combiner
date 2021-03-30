@@ -21,8 +21,18 @@ export const parseCSVFileArray = (arrayOfCSVFiles) => {
             .pipe(csv())
             .on('data', (data) => results.push(data))
             .on('end', () => {
-                console.log(results);
-            });
+                // console.log(results);
+                results[0].push("filename")
+                results.map(dataArray => {
+                    if (dataArray.length < 3) {
+                        dataArray.push(fileName)
+                        return dataArray
+                    } else {
+                        return dataArray;
+                    }
+                })
+                console.log(results)
+            })
 
 
         // (async () => {
