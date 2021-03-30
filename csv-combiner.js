@@ -3,11 +3,16 @@
 // console.log("hello world");
 // console.log(process.argv);
 
+import { filterOutCSVs } from "./filter-csv.js";
+
 const csvCombiner = (arr) => {
 
     // remove non-csv files from the array of arguments
-
+    const csvFileArray = filterOutCSVs(arr);
+    console.log(csvFileArray);
     // parse the csv files into an array of objects
+
+
     // add a new colum with the filename
     // deal with bad data somehow
 
