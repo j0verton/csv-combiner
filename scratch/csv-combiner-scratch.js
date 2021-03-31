@@ -1,17 +1,7 @@
 #!/usr/bin/env node
-
 const { parseCSVFile } = require('../parseCSVFile.js');
 const { filterOutCSVs } = require('../filter-csv.js')
 require('fs');
-// console.log("hello world");
-// console.log(process.argv);
-// import csv from 'csv-parser';
-
-// import fs from 'fs'
-// import { filterOutCSVs } from "./filter-csv.js";
-// import { parseCSVFile } from "./parseCSV.js";
-// import { convertPathToFileName } from './utils.js';
-// import readline from 'readline';
 
 async function csvCombiner(arr) {
 

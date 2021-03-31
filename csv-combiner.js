@@ -11,10 +11,11 @@ async function csvCombiner(arr) {
 
     //add some logic for cases when no csv is passed
 
-    ParseAllCSVsAsynchronously(csvFileArray)
-        .then(data => {
-            console.log("data", data)
-        })
+
+    const data = await ParseAllCSVsAsynchronously(csvFileArray)
+
+
+    console.log(data)
 
 }
 
