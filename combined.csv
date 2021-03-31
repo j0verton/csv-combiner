@@ -1,1 +1,10 @@
-[]
+[
+  '/usr/local/bin/node',
+  '/home/overtonje/workspace/csv-combiner/csv-combiner.js',
+  './fixtures/accessories.csv',
+  './fixtures/household_cleaners.csv'
+]
+[
+  [ [ 'email_hash', 'category', 'filename' ] ],
+  [ [ 'email_hash', 'category', 'filename' ] ]
+]

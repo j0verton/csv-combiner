@@ -3,6 +3,7 @@ import { filterOutCSVFilesFromArgumentArray, changeHeaderToFileName } from "./da
 import { parseCSVFile, parseAllCSVsAsynchronously, parseHeader } from "./parsing-functions.js";
 
 async function main(arr) {
+    console.log(arr)
 
     // remove anythong without a .csv extension from the array of arguments
     const csvFileArray = filterOutCSVFilesFromArgumentArray(arr);
@@ -17,7 +18,7 @@ async function main(arr) {
 
     //parse headers
     const headers = await parseAllCSVsAsynchronously(csvFileArray, parseHeader);
-    // console.log(headers)
+    console.log(headers)
 
     //combine the datasets into a single file
     //according to my research .concat() is likely the fastest option
@@ -25,7 +26,7 @@ async function main(arr) {
     //maybe skip this
     //output the file
 
-    process.stdout(headers[0])
+    // process.stdout.write(headers[0])
 }
 
 main(process.argv)
