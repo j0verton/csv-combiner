@@ -13,15 +13,15 @@ import readline from 'readline';
 async function csvCombiner(arr) {
 
     // remove non-csv files from the array of arguments
-
+    console.log(arr)
     const csvFileArray = filterOutCSVs(arr);
-
+    console.log(csvFileArray)
     //this is parseCSVFile
     // const functionWithPromise = item => {
     //     return Promise.resolve('ok')
 
     // }
-
+    console.log(parseCSVFile(csvFileArray[0]))
     const anAsyncFunction = async item => {
         console.log(item)
         return parseCSVFile(item)

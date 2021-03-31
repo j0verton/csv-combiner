@@ -9,22 +9,20 @@ import { convertPathToFileName } from './utils.js';
 // import { stdout } from 'node:process';
 
 export const parseCSVFile = async (csvFilePath) => {
-    const records = []
+    const fileName = convertPathToFileName(csvFilePath)
+    const results = []
     console.log(csvFilePath)
 
-    const parser = fs
-        .createReadStream(csvFilePath)
-        .pipe(parse({
-            // CSV options if any
-        }));
-    console.log(parser)
-    parser.on('readable', function () {
-
-        let record;
-        while (record = parser.read()) {
-            records.push(record)
-        }
-    });
+    const parser = fs.createReadStream(csvFilePath)
+        .pipe(csv())
+        .on('header', function (header) {
+            header.push("filename");
+            results.push(header);
+        })
+        .on('data', function (data) {
+            data.push(fileName);
+            results.push(data);
+        })
     await finished(parser);
-    return records
+    return results
 }
