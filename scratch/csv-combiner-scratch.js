@@ -34,9 +34,11 @@ async function csvCombiner(arr) {
         return Promise.all(csvFileArray.map(item => anAsyncFunction(item)))
     }
 
-    getData().then(data => {
-        console.log(data)
-    })
+    const data = await getData()
+
+
+    console.log(data)
+
 
 
 
