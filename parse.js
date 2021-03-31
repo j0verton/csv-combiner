@@ -7,60 +7,107 @@ import neatCsv from 'neat-csv';
 export const parseCSVFileArray = async (arrayOfCSVFiles) => {
 
 
-    const arrayOfDataObjects = await arrayOfCSVFiles.map(async (file) => {
 
-        const stringArrayWithFileName = file.split('/');
 
-        const fileNameIndex = stringArrayWithFileName.length - 1;
+    // readCSVData = async (filePath): Promise<any> => {
+    //     const parseStream = parse({ delimiter: ',' });
+    //     const data = await getStream.array(fs.createReadStream(filePath).pipe(parseStream));
+    //     return data.map(line => line.join(',')).join('\n');
+    // }
 
-        const fileName = stringArrayWithFileName[fileNameIndex];
+    //     return Promise.all(arrayOfCSVFiles.forEach(async file => {
+    //         const stringArrayWithFileName = file.split('/');
 
-        const results = [];
+    //         const fileNameIndex = stringArrayWithFileName.length - 1;
 
-        await fs.createReadStream(file)
-            .pipe(csv())
-            .on('header', function (header) {
-                header.push("filename");
-                results.push(header);
-            })
-            .on('data', function (data) {
-                data.push(fileName);
-                results.push(data);
-            })
-            .on('end', () => {
-                return new Promise(() => { console.log("parse complete") })
-            });
-    })
-    console.log(arrayOfDataObjects, "arrayOfDataObjects")
-    return arrayOfDataObjects
+    //         const fileName = stringArrayWithFileName[fileNameIndex];
 
+    //         const data = await processFile(file)
+    //         // console.log(data);
+    //         return data
+    //     })).then(array => {
+    //         console.log(array)
+    //     })
+    // }
+
+
+
+    // async function processFile(file) {
+    //     const records = []
+    //     const parser = fs
+    //         .createReadStream(file)
+    //         .pipe(parse({
+    //             // CSV options if any
+    //         }));
+    //     for await (const record of parser) {
+    //         // Work with each record
+    //         records.push(record)
+    //     }
+    //     // console.log(records[1])
+    //     return records
 }
 
 
-    // (async () => {
-    //     console.log(await neatCsv(fileName));
-    //     //=> [{type: 'unicorn', part: 'horn'}, {type: 'rainbow', part: 'pink'}]
-    // })();
+// return arrayOfCSVFiles.map(async (file) => {
+
+//     const stringArrayWithFileName = file.split('/');
+
+//     const fileNameIndex = stringArrayWithFileName.length - 1;
+
+//     const fileName = stringArrayWithFileName[fileNameIndex];
+
+//     const results = [];
+//     // processFile(file).then(res => {
+//     //     console.log(res);
+//     // })
+//     return await (async () => {
+//         return processFile(file)
+//         // console.log(records);
+//         // return records
+//     })()
+
+// await fs.createReadStream(file)
+//     .pipe(csv())
+//     .on('header', function (header) {
+//         header.push("filename");
+//         results.push(header);
+//     })
+//     .on('data', function (data) {
+//         data.push(fileName);
+//         results.push(data);
+//     })
+//     .on('end', () => {
+//         return new Promise(() => { console.log("parse complete") })
+//     });
+// })
+// console.log(arrayOfDataObjects, "arrayOfDataObjects")
+// return arrayOfDataObjects
+
+
+
+
+// (async () => {
+//     console.log(await neatCsv(fileName));
+//     //=> [{type: 'unicorn', part: 'horn'}, {type: 'rainbow', part: 'pink'}]
+// })();
 
 
 
 
 
-    // return parseFile(fileName).then(response => {
-    //     console.log(response)
-    //     return response
-    // })
+// return parseFile(fileName).then(response => {
+//     console.log(response)
+//     return response
+// })
 
 
 
-    // return fs.createReadStream(file)
-    //     .pipe(csv())
-    //     .on('data', function (data) {
-    //         data.newColumn = fileName;
-    //         dataArray.push(data);
-    //     })
-
-
+// return fs.createReadStream(file)
+//     .pipe(csv())
+//     .on('data', function (data) {
+//         data.newColumn = fileName;
+//         dataArray.push(data);
+//     })
 
 
 // const parseFile = async (fileName) => {
