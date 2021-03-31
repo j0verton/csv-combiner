@@ -15,7 +15,7 @@ async function csvCombiner(arr) {
     const data = await ParseAllCSVsAsynchronously(csvFileArray)
 
 
-    console.log(data)
+    console.log(data[0])
 
 }
 
