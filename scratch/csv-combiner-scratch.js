@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const { parseCSVFile } = require('../parseCSVFile.js');
-const { filterOutCSVs } = require('../filter-csv.js')
+const { parseCSVFile } = require('../parsing-functions.js');
+const { filterOutCSVs } = require('./filter-csv.js')
 require('fs');
 
 async function csvCombiner(arr) {

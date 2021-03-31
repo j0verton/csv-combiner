@@ -1,6 +1,6 @@
 import fs from 'fs'
 import csv from 'csv-parse';
-import { convertPathToFileName } from './utils.js';
+import { convertPathToFileName } from './data-utils.js';
 
 export const parseCSVFile = async (csvFilePath) => {
     const fileName = convertPathToFileName(csvFilePath)
@@ -18,6 +18,6 @@ export const parseCSVFile = async (csvFilePath) => {
     });
 }
 
-export const ParseAllCSVsAsynchronously = async (csvFileArray) => {
+export const parseAllCSVsAsynchronously = async (csvFileArray) => {
     return Promise.all(csvFileArray.map(item => parseCSVFile(item)))
 }
