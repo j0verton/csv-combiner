@@ -6,33 +6,41 @@ import csv from 'csv-parser';
 
 import fs from 'fs'
 import { filterOutCSVs } from "./filter-csv.js";
-import { parseCSVFileArray } from "./parseCSV.js";
+import { parseCSVFile } from "./parseCSV.js";
 import { convertPathToFileName } from './utils.js';
 import readline from 'readline';
 
 async function csvCombiner(arr) {
-    //maybe because I'm insane here's the thing to do, when the file runs 
-    // const readline = require("readline");
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    rl.question("What is your name ? ", function (name) {
-        rl.question("Where do you live ? ", function (country) {
-            console.log(`${name}, is a citizen of ${country}`);
-            rl.close();
-        });
-    });
-
-    rl.on("close", function () {
-        console.log("\nBYE BYE !!!");
-        process.exit(0);
-    });
 
     // remove non-csv files from the array of arguments
 
     const csvFileArray = filterOutCSVs(arr);
+
+    //this is parseCSVFile
+    // const functionWithPromise = item => {
+    //     return Promise.resolve('ok')
+
+    // }
+
+    const anAsyncFunction = async item => {
+        console.log(item)
+        return parseCSVFile(item)
+    }
+
+    const getData = async () => {
+        return Promise.all(csvFileArray.map(item => anAsyncFunction(item)))
+    }
+
+    getData().then(data => {
+        console.log(data)
+    })
+
+
+
+
+
+
+
     // console.log(csvFileArray);
     // parse the csv files into an array of objects
 
