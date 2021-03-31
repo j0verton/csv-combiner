@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { parseCSVFile } = require('./parseCSVFile.js');
-const { filterOutCSVs } = require('./filter-csv.js')
+const { parseCSVFile } = require('../parseCSVFile.js');
+const { filterOutCSVs } = require('../filter-csv.js')
 require('fs');
 // console.log("hello world");
 // console.log(process.argv);
