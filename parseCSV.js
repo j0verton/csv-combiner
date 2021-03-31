@@ -6,10 +6,10 @@
 // import neatCsv from 'neat-csv';
 // import { convertPathToFileName } from './utils.js';
 // // import { stdout } from 'node:process';
-// import stream from 'stream';
+import stream from 'stream';
 
 
-const parseCSVFile = async (csvFilePath) => {
+export const parseCSVFile = async (csvFilePath) => {
     const fileName = convertPathToFileName(csvFilePath)
     const results = []
     console.log("csvFilePath in function", csvFilePath)
