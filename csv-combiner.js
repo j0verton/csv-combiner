@@ -1,27 +1,30 @@
 #!/usr/bin/env node
 
+const { parseCSVFile } = require('./parseFsOnly');
+
+require('fs');
 // console.log("hello world");
 // console.log(process.argv);
-import csv from 'csv-parser';
+// import csv from 'csv-parser';
 
-import fs from 'fs'
-import { filterOutCSVs } from "./filter-csv.js";
-import { parseCSVFile } from "./parseCSV.js";
-import { convertPathToFileName } from './utils.js';
-import readline from 'readline';
+// import fs from 'fs'
+// import { filterOutCSVs } from "./filter-csv.js";
+// import { parseCSVFile } from "./parseCSV.js";
+// import { convertPathToFileName } from './utils.js';
+// import readline from 'readline';
 
 async function csvCombiner(arr) {
 
     // remove non-csv files from the array of arguments
-    console.log(arr)
+    console.log("arr", arr)
     const csvFileArray = filterOutCSVs(arr);
-    console.log(csvFileArray)
+    console.log("csvFileArray", csvFileArray)
     //this is parseCSVFile
     // const functionWithPromise = item => {
     //     return Promise.resolve('ok')
 
     // }
-    console.log(parseCSVFile(csvFileArray[0]))
+    console.log("single item parse", parseCSVFile(csvFileArray[0]))
     const anAsyncFunction = async item => {
         console.log(item)
         return parseCSVFile(item)
