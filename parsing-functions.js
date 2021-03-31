@@ -1,7 +1,8 @@
 import fs from 'fs'
 import csv from 'csv-parse';
 import { convertPathToFileName } from './data-utils.js';
-import { generate } from 'csv';
+import stringify from "csv-stringify";
+
 
 export const parseCSVFile = async (csvFilePath) => {
     const fileName = convertPathToFileName(csvFilePath)
@@ -48,6 +49,11 @@ export const parseHeader = async (csvFilePath) => {
     });
 }
 
-export const generateCSV = (dataArray) => {
-    generate().pipe()
+export const outputToCSV = (headerArray, dataArray) => {
+    stringify(headerArray[0])
+        .pipe(process.stdout)
+    dataArray.forEach(set => {
+        stringify(set)
+            .pipe(process.stdout)
+    })
 }
