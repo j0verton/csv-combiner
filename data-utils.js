@@ -1,18 +1,26 @@
+import InputError from './errors/input-error.js'
 export const filterOutCSVFilesFromArgumentArray = (arr) => {
     //save filter result to a variable and and add an if else
     //returning an error if no .csvs present 
 
     const results = arr.filter(path => path.endsWith(".csv"))
+    console.log(results)
+    if (results.length > 1) {
+        return results
 
+    } else if (results.length === 0 || results.length === 1) {
+        throw new InputError()
+    }
 
 }
+
+
 
 export const convertPathToFileName = (path) => {
     const stringArrayWithFileName = path.split('/');
     const fileNameIndex = stringArrayWithFileName.length - 1;
     const fileName = stringArrayWithFileName[fileNameIndex];
     return fileName;
-
 }
 
 
