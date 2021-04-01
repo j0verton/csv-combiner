@@ -1,6 +1,5 @@
 import assert from 'assert'
 import { parseCSVFile } from '../parsing-functions.js';
-import { workingCSVPath } from './test-fixtures/'
 describe('Parsing Function Tests', function () {
     describe('parse CSV File', function () {
 
