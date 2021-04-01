@@ -15,12 +15,16 @@ describe('Data Util Tests', function () {
             assert.strictEqual(response.length, 3);
         });
 
-        it('should throw an error when passed an array no .csv files', function () {
+        it('should not throw an InputError when passed an array with 3 .csv files', function () {
+            assert.doesNotThrow(() => { filterOutCSVFilesFromArgumentArray(arrayOne) }, InputError);
+        });
+
+        it('should throw an InputError when passed an array no .csv files', function () {
             // let response = filterOutCSVFilesFromArgumentArray(arrayTwo)
             assert.throws(() => { filterOutCSVFilesFromArgumentArray(arrayTwo) }, InputError);
         });
 
-        it('should throw an error when passed an array containing one .csv file', function () {
+        it('should throw an InputError when passed an array containing one .csv file', function () {
             // let response = filterOutCSVFilesFromArgumentArray(arrayThree)
             assert.throws(() => { filterOutCSVFilesFromArgumentArray(arrayThree) }, InputError);
         });
