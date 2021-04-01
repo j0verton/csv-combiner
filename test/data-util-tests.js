@@ -31,16 +31,19 @@ describe('Data Util Tests', function () {
     });
 
 
-    // describe('Convert Path To FileName', function () {
-    //     it('should return -1 when the value is not present', function () {
-    //         assert.equal([1, 2, 3].indexOf(4), -1);
-    //     });
-    // });
+    //I'm not sure what edge cases I really need to test for here, 
+    //by the time we've gotten this far we know the path ends in .csv 
+    //and the parsing function are ensuring the file is valid.
+
+    describe('Convert Path To FileName', function () {
+        let filePathOne = "./user/home/workspace/combiner/fixtures/example.csv"
+        let expectedFileName = "example.csv"
+        it('should return the file name when passed a vaild file path', function () {
+            let fileName = convertPathToFileName(filePathOne)
+            assert.strictEqual(fileName, expectedFileName);
+        });
+    });
 
 
-    // describe('Filter CSV Files from Argument Array', function () {
-    //     it('should return -1 when the value is not present', function () {
-    //         assert.equal([1, 2, 3].indexOf(4), -1);
-    //     });
-    // });
+
 });
