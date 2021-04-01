@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { filterOutCSVFilesFromArgumentArray } from '../data-utils.js';
+import { filterOutCSVFilesFromArgumentArray, convertPathToFileName } from '../data-utils.js';
 import InputError from '../errors/input-error.js';
 
 
