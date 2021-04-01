@@ -4,7 +4,6 @@ export const filterOutCSVFilesFromArgumentArray = (arr) => {
     //returning an error if no .csvs present 
 
     const results = arr.filter(path => path.endsWith(".csv"))
-    console.log(results)
     if (results.length > 1) {
         return results
 

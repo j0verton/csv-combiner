@@ -11,6 +11,9 @@ export const parseCSVFile = async (csvFilePath) => {
         fs.createReadStream(csvFilePath)
             .pipe(csv(
                 {
+                    // 
+                    skip_lines_with_error: true,
+
                     // I skipped the headers in an attempt to make the application faster when combining later
                     from: 2
                 }
