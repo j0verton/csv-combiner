@@ -2,6 +2,7 @@ import assert from 'assert'
 import { parseCSVFile } from '../parsing-functions.js';
 
 import path from 'path'
+import NoContentError from '../errors/no-content-error.js';
 
 describe('Parsing Function Tests', function () {
     describe('parse CSV File', function () {
@@ -24,10 +25,16 @@ describe('Parsing Function Tests', function () {
             assert.deepEqual(response, workingCSVExpectedResult);
         });
 
-        it('should return an array containing the strangely formatted data', async function () {
+        it('should return an array containing an entry with an extra set of back-slashes ', async function () {
             let response = await parseCSVFile(oddDataCSVPath)
             assert.deepEqual(response, oddDataCSVExpectedResult);
         });
+
+        it('should throw an NoContentError when passed an array no .csv files', function () {
+            assert.throws(async () => { await parseCSVFile(oddDataCSVPath) }, NoContentError);
+        });
+
+
         //         it('should not throw an InputError when passed an array with 3 .csv files', function () {
         //             assert.doesNotThrow(() => { filterOutCSVFilesFromArgumentArray(arrayOne) }, InputError);
         //         });
