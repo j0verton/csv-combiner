@@ -17,12 +17,12 @@ describe('Data Util Tests', function () {
 
         it('should throw an error when passed an array no .csv files', function () {
             // let response = filterOutCSVFilesFromArgumentArray(arrayTwo)
-            assert.throw(filterOutCSVFilesFromArgumentArray(arrayTwo), InputError);
+            assert.throw(() => { filterOutCSVFilesFromArgumentArray(arrayTwo) }, InputError);
         });
 
         it('should throw an error when passed an array containing one .csv file', function () {
             // let response = filterOutCSVFilesFromArgumentArray(arrayThree)
-            assert.throw(filterOutCSVFilesFromArgumentArray(arrayThree), InputError);
+            assert.throw(() => { filterOutCSVFilesFromArgumentArray(arrayThree) }, InputError);
         });
     });
 
