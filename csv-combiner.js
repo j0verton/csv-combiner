@@ -4,10 +4,10 @@ import { parseCSVFile, parseAllCSVsAsynchronously, parseHeader, outputToCSV } fr
 
 async function main(arr) {
 
-    // remove anythong without a .csv extension from the array of arguments
+    // remove anything without a .csv extension from the array of arguments
     const csvFileArray = filterOutCSVFilesFromArgumentArray(arr);
 
-    //add some logic for cases when no csv is passed
+    //need to add some logic for cases when no csv is passed
 
     const data = await parseAllCSVsAsynchronously(csvFileArray, parseCSVFile);
 
