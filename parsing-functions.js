@@ -2,7 +2,7 @@ import fs from 'fs'
 import csv from 'csv-parse';
 import { convertPathToFileName } from './data-utils.js';
 import stringify from "csv-stringify";
-
+import NoContentError from './errors/no-content-error.js'
 
 export const parseCSVFile = async (csvFilePath) => {
     const fileName = convertPathToFileName(csvFilePath)
@@ -35,7 +35,7 @@ export const parseCSVFile = async (csvFilePath) => {
             // so the user is aware of any data loss, otherwise I think allowing the application to stop might be a better choice.
             // .on('error', () => { console.log(`error, skipped 1 line in ${fileName}`) })
             .on('end', () => {
-
+                checkForParsingErrors(results, fileName)
                 resolve(results)
             });
     });
@@ -49,11 +49,10 @@ export const parseAllCSVsAsynchronously = async (csvFileArray, parsingFunction) 
 // I wrote this function here because I wanted to keep my main clean, 
 // but I'm wondering if passing the huge array into this function will be slow
 // hopefully its just passing a refence 
-export const checkForParsingErrors = (data) => {
+export const checkForParsingErrors = (data, target) => {
     if (data.length < 1) {
-        throw
+        throw new NoContentError(target)
     }
-
 }
 export const parseHeader = async (csvFilePath) => {
     const fileName = convertPathToFileName(csvFilePath)
