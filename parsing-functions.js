@@ -35,6 +35,7 @@ export const parseCSVFile = async (csvFilePath) => {
             // so the user is aware of any data loss, otherwise I think allowing the application to stop might be a better choice.
             // .on('error', () => { console.log(`error, skipped 1 line in ${fileName}`) })
             .on('end', () => {
+
                 resolve(results)
             });
     });
@@ -49,7 +50,9 @@ export const parseAllCSVsAsynchronously = async (csvFileArray, parsingFunction) 
 // but I'm wondering if passing the huge array into this function will be slow
 // hopefully its just passing a refence 
 export const checkForParsingErrors = (data) => {
-
+    if (data.length < 1) {
+        throw
+    }
 
 }
 export const parseHeader = async (csvFilePath) => {
