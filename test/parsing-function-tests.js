@@ -10,7 +10,6 @@ describe('Parsing Function Tests', function () {
 
 
         // tests remaining
-        // should remove the '//' from an entry with incorrect format
         // should skip lines that would throw an error
         // should throw an error if no data is returned 
 
@@ -33,19 +32,5 @@ describe('Parsing Function Tests', function () {
         it('should throw an NoContentError when passed an array no .csv files', function () {
             assert.throws(async () => { await parseCSVFile(oddDataCSVPath) }, NoContentError);
         });
-
-
-        //         it('should not throw an InputError when passed an array with 3 .csv files', function () {
-        //             assert.doesNotThrow(() => { filterOutCSVFilesFromArgumentArray(arrayOne) }, InputError);
-        //         });
-
-        //         it('should throw an InputError when passed an array no .csv files', function () {
-        //             // let response = filterOutCSVFilesFromArgumentArray(arrayTwo)
-        //             assert.throws(() => { filterOutCSVFilesFromArgumentArray(arrayTwo) }, InputError);
-        //         });
-
-        //         it('should throw an InputError when passed an array containing one .csv file', function () {
-        //             // let response = filterOutCSVFilesFromArgumentArray(arrayThree)
-        //             assert.throws(() => { filterOutCSVFilesFromArgumentArray(arrayThree) }, InputError);
     });
 });

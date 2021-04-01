@@ -45,15 +45,12 @@ export const parseAllCSVsAsynchronously = async (csvFileArray, parsingFunction) 
     return Promise.all(csvFileArray.map(item => parsingFunction(item)))
 }
 
-
-// I wrote this function here because I wanted to keep my main clean, 
-// but I'm wondering if passing the huge array into this function will be slow
-// hopefully its just passing a refence 
 export const checkForParsingErrors = (data, target) => {
     if (data.length < 1) {
         throw new NoContentError(target)
     }
 }
+
 export const parseHeader = async (csvFilePath) => {
     const fileName = convertPathToFileName(csvFilePath)
     let results = []
