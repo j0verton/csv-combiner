@@ -7,6 +7,7 @@ async function main(arr) {
     // remove anything without a .csv extension from the array of arguments
     const csvFileArray = filterOutCSVFilesFromArgumentArray(arr);
 
+    checkForParsingErrors(csvFileArray)
     //need to add some logic for cases when no csv is passed
 
     const data = await parseAllCSVsAsynchronously(csvFileArray, parseCSVFile);

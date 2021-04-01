@@ -24,10 +24,15 @@ export const parseCSVFile = async (csvFilePath) => {
                 data.push(fileName);
                 results.push(data);
             })
-            // i had included this on error to notify the user at the top of the document 
-            // if the combination process skipped any data, but it doesn't work while skip... is true
-            // i would try and impliment this before I'd condsider the application ready 
-            // so the user is aware of any data loss
+
+            // I'm hoping to talk about error handling in the code review.
+            // I made a few choices here, but, in a work context, I'd not consider this ready 
+            // until talking it over with the product owner or my team lead
+
+            // I had included this .on(error...) in an effort to notify the user at the top of the document 
+            // if the combination process skipped any data, but it doesn't work while skip_lines_with_error is true
+            // I would try and impliment this before I'd condsider the application ready 
+            // so the user is aware of any data loss, otherwise I think allowing the application to stop might be a better choice.
             // .on('error', () => { console.log(`error, skipped 1 line in ${fileName}`) })
             .on('end', () => {
                 resolve(results)
@@ -39,7 +44,11 @@ export const parseAllCSVsAsynchronously = async (csvFileArray, parsingFunction) 
     return Promise.all(csvFileArray.map(item => parsingFunction(item)))
 }
 
-export const checkForParsingErrors = () => {
+
+// I wrote this function here because I wanted to keep my main clean, 
+// but I'm wondering if passing the huge array into this function will be slow
+// hopefully its just passing a refence 
+export const checkForParsingErrors = (data) => {
 
 
 }
