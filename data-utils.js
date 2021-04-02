@@ -1,4 +1,5 @@
 import InputError from './errors/input-error.js'
+
 export const filterOutCSVFilesFromArgumentArray = (arr) => {
     //save filter result to a variable and and add an if else
     //returning an error if no .csvs present 
