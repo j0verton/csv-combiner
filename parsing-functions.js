@@ -31,7 +31,7 @@ export const parseCSVFile = async (csvFilePath) => {
 
             // I had included this .on(error...) in an effort to notify the user at the top of the document 
             // if the combination process skipped any data, but it doesn't work while skip_lines_with_error is true
-            // I would try and impliment this before I'd condsider the application ready 
+            // I would try and implement this before I'd condsider the application ready 
             // so the user is aware of any data loss, otherwise I think allowing the application to stop might be a better choice.
             // .on('error', () => { console.log(`error, skipped 1 line in ${fileName}`) })
             .on('end', () => {
