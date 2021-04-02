@@ -39,13 +39,13 @@ describe('Parsing Function Tests', function () {
             assert.deepEqual(response, withErrorCSVExpectedResult);
         });
 
+        // this works on its own but its commented out because something weird is happening. if i run it the next test fails.
         // I had to pull in some additional tools to get this one working
-        // it works but its commented out because something weird is happening. if i run it the next test fails.
-        // let expect = chai.expect
-        // chai.use(chaiAsPromised);
-        // it('should throw an NoContentError when passed an empty .csv file', function () {
-        //     expect(parseCSVFile(blankCSVPath)).to.eventually.throw(NoContentError);
-        // })
+        let expect = chai.expect
+        chai.use(chaiAsPromised);
+        it('should throw an NoContentError when passed an empty .csv file', function () {
+            expect(parseCSVFile(blankCSVPath)).to.eventually.throw(NoContentError);
+        })
     })
 
     // write tests for parse header
@@ -53,13 +53,14 @@ describe('Parsing Function Tests', function () {
         let workingCSVPath = './test/test-fixtures/working-five-line.csv';
         let expectedHeader = [["email_hash", "category", "filename"]];
 
-        it('should return an array with the csv header plus a new colum for filename', async function () {
+        it('should return an array with the csv header plus a new column for filename', async function () {
             let response = await parseHeader(workingCSVPath)
             assert.deepEqual(response, expectedHeader);
         });
     });
 
     // I messed with this test for awhile and I cant get it to work, i decided to move on and ask about it
+
     // describe('output To CSV', function () {
     //     let workingHeader = [["email_hash", "category", "filename"]]
     //     let workingArray = [['one', 'Satchels', 'working-five-line.csv'], ['two', 'Purses', 'working-five-line.csv'], ['three', 'Purses', 'working-five-line.csv'], ['four', 'Wallets', 'working-five-line.csv']]
