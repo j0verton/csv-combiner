@@ -8,7 +8,7 @@ to run the application
 - cd into the csv-combiner directory 
 - call the application from the command line using the following format:
 ```
-$./this-application ./a-csv-file.csv ./as-many-other-files.csv > destination-file.csv
+$./csv-combiner.js ./a-csv-file.csv ./as-many-other-files.csv > destination-file.csv
 ```
 for example:
 
