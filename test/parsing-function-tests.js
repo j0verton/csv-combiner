@@ -62,12 +62,15 @@ describe('Parsing Function Tests', function () {
     // I messed with this test for awhile and I cant get it to work, i decided to move on and ask about it
 
     // describe('output To CSV', function () {
+    //     let expect = chai.expect
+    //     chai.use(chaiAsPromised);
     //     let workingHeader = [["email_hash", "category", "filename"]]
     //     let workingArray = [['one', 'Satchels', 'working-five-line.csv'], ['two', 'Purses', 'working-five-line.csv'], ['three', 'Purses', 'working-five-line.csv'], ['four', 'Wallets', 'working-five-line.csv']]
     //     let expectedResult = 'string'
+
     //     it('should return csv format matching the input array'), async function () {
     //         outputToCSV(workingHeader, workingArray)
-    //         assert.deepEqual(inspect.output, expectedResult);
+    //         expect(inspect.output).to.eventually.deepEqual(expectedResult)
     //     }
 
     //     it('should return csv format matching the input array'), async function () {
