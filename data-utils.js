@@ -2,7 +2,6 @@ import InputError from './errors/input-error.js'
 export const filterOutCSVFilesFromArgumentArray = (arr) => {
     //save filter result to a variable and and add an if else
     //returning an error if no .csvs present 
-
     const results = arr.filter(path => path.endsWith(".csv"))
     if (results.length > 1) {
         return results
@@ -10,7 +9,6 @@ export const filterOutCSVFilesFromArgumentArray = (arr) => {
     } else if (results.length === 0 || results.length === 1) {
         throw new InputError()
     }
-
 }
 
 
@@ -21,6 +19,9 @@ export const convertPathToFileName = (path) => {
     const fileName = stringArrayWithFileName[fileNameIndex];
     return fileName;
 }
+
+
+//function to check if all the headers are equal
 
 
 /// *************************

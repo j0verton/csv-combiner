@@ -1,5 +1,6 @@
 import assert from 'assert'
-import { parseCSVFile } from '../parsing-functions.js';
+import chai from 'chai'
+import { parseCSVFile, parseHeader } from '../parsing-functions.js';
 
 import path from 'path'
 import NoContentError from '../errors/no-content-error.js';
@@ -30,7 +31,7 @@ describe('Parsing Function Tests', function () {
 
         it('should return an array containing the entry with the extra set of back-slashes ', async function () {
             let response = await parseCSVFile(oddDataCSVPath)
-            assert.deepEqual(response[3][1], oddDataCSVExpectedResult[3][1]);
+            assert.strictEqual(response[3][1], oddDataCSVExpectedResult[3][1]);
         });
 
         it('should remove a line that would throw an error', async function () {
@@ -38,16 +39,36 @@ describe('Parsing Function Tests', function () {
             assert.deepEqual(response, withErrorCSVExpectedResult);
         });
 
+        let expect = chai.expect
+
         it('should throw an NoContentError when passed an empty .csv file', function () {
-            assert.throws(async () => { await parseCSVFile(blankCSVPath) }, NoContentError('blank.csv'));
+            expect(async () => { await parseCSVFile(blankCSVPath) }).to.throw(NoContentError);
+        })
+    })
+
+    // write tests for parse header
+    describe('parse Header', function () {
+        let workingCSVPath = './test/test-fixtures/working-five-line.csv';
+        let expectedHeader = [["email_hash", "category", "filename"]]
+
+
+        it('should return an array with the csv header plus a new colum for filename', async function () {
+            let response = await parseHeader(workingCSVPath)
+            assert.deepEqual(response, expectedHeader);
         });
 
 
+    })
+
+    describe('output To CSV', function () {
 
 
 
-    });
+    })
+
+
+
+});
 
     // try for testing stdout
     // assert.deepEqual(inspect.output, [ "foo\n" ]);
-});
