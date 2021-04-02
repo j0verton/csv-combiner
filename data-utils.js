@@ -11,8 +11,6 @@ export const filterOutCSVFilesFromArgumentArray = (arr) => {
     }
 }
 
-
-
 export const convertPathToFileName = (path) => {
     const stringArrayWithFileName = path.split('/');
     const fileNameIndex = stringArrayWithFileName.length - 1;
@@ -21,7 +19,7 @@ export const convertPathToFileName = (path) => {
 }
 
 
-//function to check if all the headers are equal
+// could add an additional function to check if all the headers are equal
 
 
 /// *************************
