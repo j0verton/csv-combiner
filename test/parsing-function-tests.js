@@ -18,14 +18,19 @@ describe('Parsing Function Tests', function () {
         let oddDataCSVExpectedResult = [["one", "Blouses", "odd-data-five-line.csv"], ["two", "Cardigans", "odd-data-five-line.csv"], ["three", "Capris", "odd-data-five-line.csv"], ["four", "\"Gingham\" Shorts", "odd-data-five-line.csv"]]
         let withErrorCSVExpectedResult = [["two", "Cardigans", "with-error.csv"], ["three", "Capris", "with-error.csv"], ["four", "\"Gingham\" Shorts", "with-error.csv"]]
 
-        it('should return an array of the data in the .csv file without the header and with a new column for the filename', async function () {
+        it('should return an array of the data in the .csv file without the header', async function () {
             let response = await parseCSVFile(workingCSVPath)
-            assert.deepEqual(response, workingCSVExpectedResult);
+            assert.strictEqual(response[0][1], workingCSVExpectedResult[0][1]);
         });
 
-        it('should return an array containing an entry with an extra set of back-slashes ', async function () {
+        it('should return an array of the data in the .csv file with a new column for the filename', async function () {
+            let response = await parseCSVFile(workingCSVPath)
+            assert.strictEqual(response[3][3], workingCSVExpectedResult[3][3]);
+        });
+
+        it('should return an array containing the entry with the extra set of back-slashes ', async function () {
             let response = await parseCSVFile(oddDataCSVPath)
-            assert.deepEqual(response, oddDataCSVExpectedResult);
+            assert.deepEqual(response[3][1], oddDataCSVExpectedResult[3][1]);
         });
 
         it('should remove a line that would throw an error', async function () {

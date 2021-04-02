@@ -46,6 +46,7 @@ export const parseAllCSVsAsynchronously = async (csvFileArray, parsingFunction) 
 }
 
 export const checkForParsingErrors = (data, target) => {
+    // is checking the length of a huge array a time suck? I could refactor to look for data[0]
     if (data.length < 1) {
         throw new NoContentError(target)
     }

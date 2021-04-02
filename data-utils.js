@@ -52,7 +52,9 @@ export const changeHeaderToFileName = (singleFileDataArray) => {
 //Instead I skipped the header in the initial parse and implemented a second 
 //parse that only took the header
 export const removeUnnescassaryHeaders = (data) => {
-    for (let i = 0; i < data.length; i++) {
+    // does using this variable to save a couple tenths of a milisecond? not looking up data.length 3+ times?
+    const len = data.length
+    for (let i = 0; i < len; i++) {
         if (i !== 0) {
             data[i].shift()
         }
