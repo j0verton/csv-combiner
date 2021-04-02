@@ -35,6 +35,7 @@ export const parseCSVFile = async (csvFilePath) => {
             // so the user is aware of any data loss, otherwise I think allowing the application to stop might be a better choice.
             // .on('error', () => { console.log(`error, skipped 1 line in ${fileName}`) })
             .on('end', () => {
+                //makes sure results isnt empty
                 checkForParsingErrors(results, fileName)
                 resolve(results)
             });
