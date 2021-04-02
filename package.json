@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^8.3.2"
+    "mocha": "^8.3.2",
+    "test-console": "^1.1.0"
   }
 }
