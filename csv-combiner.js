@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { filterOutCSVFilesFromArgumentArray, changeHeaderToFileName } from "./data-utils.js";
+import { filterOutCSVFilesFromArgumentArray } from "./data-utils.js";
 import { parseCSVFile, parseAllCSVsAsynchronously, parseHeader, outputToCSV } from "./parsing-functions.js";
 
 async function main(arr) {

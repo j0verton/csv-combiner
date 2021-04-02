@@ -19,7 +19,7 @@ export const convertPathToFileName = (path) => {
 }
 
 
-// could add an additional function to check if all the headers are equal
+// could add an additional function here to check if all the headers are equal
 
 
 /// *************************

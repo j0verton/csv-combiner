@@ -72,6 +72,7 @@ export const parseHeader = async (csvFilePath) => {
     });
 }
 
+//outputs the header then the data, set up this way for speed
 export const outputToCSV = (headerArray, dataArray) => {
     stringify(headerArray[0])
         .pipe(process.stdout)
